@@ -13,6 +13,6 @@ typedef struct Audio_File_Manipulator{
 
 void open_audio_file(AUDIO_FILE_MANIPULATOR* audio_file_manipulator);   // 音声ファイルを開く関数
 void close_audio_file(AUDIO_FILE_MANIPULATOR* audio_file_manipulator);  // 音声ファイルを閉じる関数
-void display_audio_file_properties(AUDIO_FILE_MANIPULATOR audio_file_manipulator);  // 音声ファイルの構造体のプロパティを表示する関数
+void display_audio_file_manipulator_properties(AUDIO_FILE_MANIPULATOR audio_file_manipulator);  // 音声ファイルの構造体のプロパティを表示する関数
 
 #endif

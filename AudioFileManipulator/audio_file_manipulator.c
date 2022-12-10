@@ -26,7 +26,7 @@ void close_audio_file(AUDIO_FILE_MANIPULATOR* audio_file_manipulator){
 }
 
 /* 音声ファイルの構造体のプロパティを表示する関数 */
-void display_audio_file_properties(AUDIO_FILE_MANIPULATOR audio_file_manipulator){
+void display_audio_file_manipulator_properties(AUDIO_FILE_MANIPULATOR audio_file_manipulator){
     printf(" ---------- AUDIO_FILE_MANIPULATOR ---------- \n");
     printf("audio_file_manipulator.audio_file_path : %s\n", audio_file_manipulator.audio_file_path);
     printf("audio_file_manipulator.mode : %s\n", audio_file_manipulator.mode);
