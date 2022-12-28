@@ -25,18 +25,16 @@ int main(int argc, char *argv[]){
 
     /* format : WAVE, compression_code : linear, channel : monoral */
     if ((strcmp(header_chunk.riff_chunk.format_type, "WAVE") == 0) && (header_chunk.format_chunk.compression_code == 1) && (header_chunk.format_chunk.channel == 1)){
-        MONORAL_PULSE_CODE_MODULATION monoral_pulse_code_modulation;
-        monoral_pulse_code_modulation.header_chunk = header_chunk;
+        MONORAL_PULSE_CODE_MODULATION monoral_pulse_code_modulation = {header_chunk};
         load_monoral_pulse_code_modulation(&monoral_pulse_code_modulation, audio_file_manipulator.audio_file);
         normalize_monoral_pulse_code_modulation_signal(&monoral_pulse_code_modulation);
-        size_t fft_point = pow(2.0, 10);
-        double *amplitude_spectrum = calculate_amplitude_spectrum(monoral_pulse_code_modulation.signal, fft_point);
-        for(unsigned int amplitude_spectrum_index = 0; amplitude_spectrum_index < (fft_point / 2); amplitude_spectrum_index++){
-            printf("index : %d, amplitude : %lf\n", amplitude_spectrum_index, amplitude_spectrum[amplitude_spectrum_index]);
-        }
-        
+
+        size_t fft_point = calculate_fft_point(monoral_pulse_code_modulation.length);
+        double *power_spectrum = calculate_power_spectrum(monoral_pulse_code_modulation.signal, fft_point);
+        // display_power_spectrum(power_spectrum, fft_point);
+
         free_monoral_pulse_code_modulation(&monoral_pulse_code_modulation);
-        free(amplitude_spectrum);
+        free(power_spectrum);
     }
     close_audio_file(&audio_file_manipulator);
 
